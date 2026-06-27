@@ -51,22 +51,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  const autoFade = [
-    '.fade-in',
-    'section h2', 'section h3',
-    '.pricing-card', '.exp-card', '.why-card-new', '.review-card',
-    '.logo-card', '.pricing-launch-banner', '.pricing-enterprise-banner',
-  ];
   const seen = new Set();
-  autoFade.forEach(sel => {
+
+  const addFade = (sel, cls = 'fade-in') => {
     document.querySelectorAll(sel).forEach(el => {
-      if (!seen.has(el)) {
-        seen.add(el);
-        el.classList.add('fade-in');
-        observer.observe(el);
-      }
+      if (seen.has(el)) return;
+      seen.add(el);
+      el.classList.add(cls);
+      observer.observe(el);
     });
-  });
+  };
+
+  // Depuis le bas — éléments généraux
+  addFade('.fade-in');
+  addFade('section h2');
+  addFade('section h3');
+  addFade('.pricing-card');
+  addFade('.exp-card');
+  addFade('.why-card-new');
+  addFade('.review-card');
+  addFade('.logo-card');
+  addFade('.pricing-launch-banner');
+  addFade('.pricing-enterprise-banner');
+
+  // Depuis la droite — image service 1 (bloc normal, image à droite)
+  addFade('.service-block:not(.service-block--reverse) .service-img-col', 'fade-in-right');
+  // Depuis la gauche — image service 2 (bloc inversé, image à gauche visuellement)
+  addFade('.service-block--reverse .service-img-col', 'fade-in-left');
+
+  // ---------- TRANSITIONS DE PAGES ----------
+  const initPageTransitions = () => {
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('http') || href.startsWith('#') ||
+          href.startsWith('mailto') || href.startsWith('tel')) return;
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (document.startViewTransition) {
+          document.startViewTransition(() => { window.location.href = href; });
+        } else {
+          document.body.style.transition = 'opacity 0.3s ease';
+          document.body.style.opacity = '0';
+          setTimeout(() => { window.location.href = href; }, 300);
+        }
+      });
+    });
+
+    document.body.style.opacity = '0';
+    requestAnimationFrame(() => {
+      document.body.style.transition = 'opacity 0.4s ease';
+      document.body.style.opacity = '1';
+    });
+  };
+
+  initPageTransitions();
 
   // ---------- FORMULAIRE DE CONTACT ----------
   const form = document.querySelector('#contact-form');
