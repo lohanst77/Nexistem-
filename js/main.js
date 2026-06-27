@@ -88,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const addFade = (sel, cls = 'fade-in') => {
     document.querySelectorAll(sel).forEach(el => {
       if (seen.has(el)) return;
+      // Éléments gérés par leurs propres observateurs dédiés
+      if (el.closest('.service-block') || el.closest('.about-hero') || el.closest('.why-cheaper') || el.closest('.pricing-grid')) return;
       seen.add(el);
       el.classList.add(cls);
       observer.observe(el);
@@ -97,15 +99,134 @@ document.addEventListener('DOMContentLoaded', () => {
   addFade('.fade-in');
   addFade('section h2');
   addFade('section h3');
-  addFade('.pricing-card');
   addFade('.exp-card');
   addFade('.why-card-new');
   addFade('.review-card');
   addFade('.logo-card');
   addFade('.pricing-launch-banner');
   addFade('.pricing-enterprise-banner');
-  addFade('.service-block:not(.service-block--reverse) .service-img-col', 'fade-in-right');
-  addFade('.service-block--reverse .service-img-col', 'fade-in-left');
+
+  // ---- Blocs service : rideau clip-path (se lève de bas en haut) + titre ligne par ligne ----
+
+  function wrapLines(heading) {
+    const parts = heading.innerHTML.split(/<br\s*\/?>/i);
+    heading.innerHTML = parts.map((part, i) =>
+      `<span class="line-wrap"><span class="line-inner" style="transition-delay:${0.1 + i * 0.13}s">${part.trim()}</span></span>`
+    ).join('');
+  }
+
+  document.querySelectorAll('.service-block').forEach(block => {
+    const content = block.querySelector('.service-block__content');
+    if (!content) return;
+
+    const num   = content.querySelector('.service-block__number');
+    const h2    = content.querySelector('h2');
+    const paras = [...content.querySelectorAll('p')].filter(p => !p.classList.contains('service-block__number'));
+    const btns  = [...content.children].find(el => el.tagName === 'DIV');
+
+    if (num) { num.classList.add('svc-fade'); num.style.transitionDelay = '0s'; }
+    if (h2)  wrapLines(h2);
+
+    if (paras.length) {
+      const group = document.createElement('div');
+      group.classList.add('svc-fade');
+      group.style.transitionDelay = '0.3s';
+      paras[0].before(group);
+      paras.forEach(p => group.appendChild(p));
+    }
+
+    if (btns) { btns.classList.add('svc-fade'); btns.style.transitionDelay = '0.42s'; }
+
+    const imgCol = block.querySelector('.service-img-col');
+    if (imgCol) { imgCol.classList.add('clip-reveal'); imgCol.style.transitionDelay = '0.08s'; }
+  });
+
+  const serviceObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('.svc-fade, .line-wrap, .clip-reveal').forEach(c => c.classList.add('visible'));
+      serviceObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-block').forEach(b => serviceObs.observe(b));
+
+  // ---- About hero : texte staggeré + photo révélation circulaire ----
+  const aboutHero = document.querySelector('.about-hero');
+  if (aboutHero) {
+    const content = aboutHero.querySelector('.about-hero__content');
+    if (content) {
+      [...content.children].forEach((child, i) => {
+        child.classList.add('stagger-item');
+        child.style.transitionDelay = `${i * 0.08}s`;
+      });
+    }
+    const photoImg = aboutHero.querySelector('.about-hero__photo img');
+    if (photoImg) photoImg.classList.add('about-photo-reveal');
+
+    const aboutObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        content?.querySelectorAll('.stagger-item').forEach(c => c.classList.add('visible'));
+        if (photoImg) setTimeout(() => photoImg.classList.add('visible'), 480);
+        aboutObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+    aboutObs.observe(aboutHero);
+  }
+
+  // ---- Pourquoi Nexistem est moins cher : paragraphes staggerés ----
+  const whyCheaper = document.querySelector('.why-cheaper');
+  if (whyCheaper) {
+    [...whyCheaper.children].forEach((child, i) => {
+      child.classList.add('stagger-item');
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+    const whyObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        [...entry.target.querySelectorAll('.stagger-item')].forEach(c => c.classList.add('visible'));
+        whyObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+    whyObs.observe(whyCheaper);
+  }
+
+  // ---- Cartes tarifs : cascade gauche → milieu → droite ----
+  const pricingGrid = document.querySelector('.pricing-grid');
+  if (pricingGrid) {
+    const cards = [...pricingGrid.querySelectorAll('.pricing-card')];
+    cards.forEach((card, i) => {
+      card.style.transition = `opacity 0.6s ease-out, transform 0.6s ease-out`;
+      card.style.transitionDelay = `${i * 0.15}s`;
+    });
+
+    const pricingObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        cards.forEach(card => card.classList.add('visible'));
+        pricingObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+
+    pricingObs.observe(pricingGrid);
+  }
+
+  // ---- FAQ : questions en cascade ----
+  const faqList = document.querySelector('.faq-list');
+  if (faqList) {
+    [...faqList.children].forEach((child, i) => {
+      child.classList.add('stagger-item');
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+    const faqObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        [...entry.target.querySelectorAll('.stagger-item')].forEach(c => c.classList.add('visible'));
+        faqObs.unobserve(entry.target);
+      });
+    }, { threshold: 0.05 });
+    faqObs.observe(faqList);
+  }
 
   // ---------- FORMULAIRE DE CONTACT ----------
   const form = document.querySelector('#contact-form');

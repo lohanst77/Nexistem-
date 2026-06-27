@@ -1479,16 +1479,125 @@ p {
   border-bottom-color: transparent;
 }
 
-/* --- Images de service — hover zoom --- */
+/* --- Stagger — enfants de blocs texte --- */
 
-.service-img-col {
+.stagger-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Reveal clip — label + titre services (slide depuis le bas du masque) --- */
+
+.svc-clip {
+  clip-path: inset(0 0 110% 0);
+  transform: translateY(16px);
+  transition: clip-path 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svc-clip.visible {
+  clip-path: inset(0 0 -10% 0);
+  transform: translateY(0);
+}
+
+/* --- Fade bloc — paragraphes et boutons services (groupe, pas individuel) --- */
+
+.svc-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svc-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Rideau qui se lève — clip-path pur, aucun fond, aucun mouvement de l'image --- */
+
+.clip-reveal {
+  clip-path: inset(100% 0 0 0 round 16px);
+  transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.clip-reveal.visible {
+  clip-path: inset(0% 0 0 0 round 16px);
+}
+
+/* --- Ligne par ligne — le texte surgit depuis le bas de son masque --- */
+
+.line-wrap {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+.line-inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.line-wrap.visible .line-inner {
+  transform: translateY(0);
+}
+
+/* --- Affiche qui se déplie — overlay recule vers le bas, image tombe dans son cadre --- */
+
+.img-unfold {
+  position: relative;
   overflow: hidden;
   border-radius: 16px;
 }
-.service-img {
+
+/* Rideau noir : ancré en bas, se rétracte vers le bas → révèle le haut en premier */
+.img-unfold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  z-index: 2;
+  transform-origin: bottom center;
+  transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.img-unfold.visible::before {
+  transform: scaleY(0);
+}
+
+/* Image : part légèrement haute (affiche encore repliée), descend dans son cadre */
+.img-unfold .service-img {
+  transform: scale(1.08) translateY(-6%);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-unfold.visible .service-img {
+  transform: scale(1) translateY(0);
+}
+.img-unfold.visible:hover .service-img {
+  transform: scale(1.03);
+}
+
+/* --- Photo profil — révélation circulaire depuis le centre --- */
+
+.about-photo-reveal {
+  opacity: 0;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.9s cubic-bezier(0.34, 1.15, 0.64, 1), opacity 0.4s ease;
+}
+.about-photo-reveal.visible {
+  opacity: 1;
+  clip-path: circle(60% at 50% 50%);
+}
+
+/* --- Images de service — hover (fallback sans sweep) --- */
+
+.service-img-col:not(.img-unfold) {
+  overflow: hidden;
+  border-radius: 16px;
+}
+.service-img-col:not(.img-unfold) .service-img {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.service-img-col:hover .service-img {
+.service-img-col:not(.img-unfold):hover .service-img {
   transform: scale(1.04);
 }
 
@@ -1516,11 +1625,17 @@ p {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .fade-in, .fade-in-left, .fade-in-right {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .fade-in, .fade-in-left, .fade-in-right, .stagger-item, .svc-clip, .svc-fade {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+    transition: none !important;
   }
+  .img-unfold::before { display: none; }
+  .img-unfold .service-img { transform: none !important; }
+  .clip-reveal { clip-path: none !important; transition: none !important; }
+  .line-inner { transform: none !important; transition: none !important; }
+  .about-photo-reveal { clip-path: none !important; opacity: 1 !important; }
   #scroll-progress { display: none; }
 }
 
