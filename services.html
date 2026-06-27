@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Nexistem</title>
+  <meta name="description" content="Site web sur mesure et agent IA & automatisation. Découvrez comment Nexistem peut transformer votre digital." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/logo-vertical.jpg" />
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-img-col {
+      display: flex;
+      align-items: center;
+    }
+    .service-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      display: block;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Nexistem — Accueil">
+        <img src="assets/logo-horizontal.jpg" alt="Nexistem" />
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--primary navbar__cta">Prendre contact</a>
+      <button class="navbar__burger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="navbar__mobile" role="dialog" aria-label="Menu mobile">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="projets.html">Projets</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="avis.html">Avis</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Prendre contact</a>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <main>
+    <!-- ===================== SERVICE 1 — SITE WEB ===================== -->
+    <section class="section" id="site-web">
+      <div class="container">
+        <div class="service-block">
+          <div class="service-block__content fade-in">
+            <p class="service-block__number">Service 01</p>
+            <h2>Site web<br />sur mesure</h2>
+
+            <p>
+              Je commence par tout comprendre de votre projet : votre identité,
+              vos pages, vos fonctionnalités, votre style. Vous avez une idée en tête ?
+              Dessinez-la, écrivez-la, envoyez-la moi — je la code.
+            </p>
+            <p>
+              J'affine avec vous jusqu'à ce que le résultat colle parfaitement
+              à ce que vous voulez.
+            </p>
+            <p>
+              Prix fixe, payé en une fois. Aucun abonnement mensuel, aucune
+              mauvaise surprise. Le site vous est livré comme si vous l'aviez
+              créé vous-même.
+            </p>
+            <p>
+              On se retrouve en visio ou en personne pour acheter votre domaine
+              ensemble et installer le code directement sur votre ordinateur.
+              Vous repartez avec votre site, entièrement à vous.
+            </p>
+            <p>
+              Je peux aussi le connecter à Notion pour que vous puissiez modifier
+              votre contenu vous-même, sans toucher à une ligne de code.
+            </p>
+            <p>
+              Après livraison, je reste disponible 30 jours pour corriger tout bug
+              éventuel. Pour toute évolution ou amélioration ultérieure, on en
+              discute ensemble selon vos besoins.
+            </p>
+
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top: 8px;">
+              <a href="tarifs.html" class="btn btn--primary">Voir le tarif</a>
+              <a href="contact.html" class="btn btn--outline">Démarrer un projet</a>
+            </div>
+          </div>
+
+          <div class="service-img-col" aria-hidden="true" style="padding-top: 40px;">
+            <img src="assets/service-web.jpg" alt="Aperçu site web sur mesure" class="service-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="service-divider"></div></div>
+
+    <!-- ===================== SERVICE 2 — AGENT IA ===================== -->
+    <section class="section" id="agent-ia">
+      <div class="container">
+        <div class="service-block service-block--reverse">
+          <div class="service-block__content fade-in">
+            <p class="service-block__number">Service 02</p>
+            <h2>Agent IA &amp;<br />Automatisation</h2>
+
+            <p>
+              Vous avez une tâche qui vous prend trop de temps ? Une action
+              répétitive et ennuyeuse qui pourrait se faire toute seule ?
+            </p>
+            <p>
+              C'est exactement là que j'interviens.
+            </p>
+            <p>
+              Je crée pour vous des automatisations sur mesure — des workflows
+              intelligents qui travaillent à votre place, comme de petits employés
+              disponibles 24h/24, sans les charges qui vont avec.
+            </p>
+            <p>
+              Dites-moi votre problème, je trouve la solution.
+            </p>
+            <p>
+              Une fois le workflow créé, on se retrouve en visio ou en personne
+              pour tout installer ensemble sur votre compte. Vous repartez avec
+              votre automatisation opérationnelle, prête à tourner. Il vous faudra
+              juste un abonnement n8n (~20€/mois) pour la faire fonctionner —
+              je vous aide à le mettre en place.
+            </p>
+
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top: 8px;">
+              <a href="tarifs.html" class="btn btn--primary">Voir le tarif</a>
+              <a href="contact.html" class="btn btn--outline">Décrire mon problème</a>
+            </div>
+          </div>
+
+          <div class="service-img-col" aria-hidden="true">
+            <img src="assets/service-ia.jpg" alt="Aperçu workflow automatisation IA" class="service-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PACK ===================== -->
+    <section class="section section--gray">
+      <div class="container text-center">
+        <p class="why-section__label">Offre combinée</p>
+        <h2 style="margin-bottom:16px;">Site web + Agent IA :<br />le pack complet</h2>
+        <p style="color:#666; max-width:520px; margin:0 auto 40px;">
+          Vous voulez un site pro ET des automatisations qui vous font gagner du temps ?
+          Je m'occupe de tout. Une seule personne, un seul interlocuteur, un tarif réduit.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="tarifs.html" class="btn btn--red">Voir l'offre pack — 650€</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo-vertical.jpg" alt="Nexistem" />
+          <p>Sites web, agents IA et automatisations.<br />Le digital professionnel, à prix juste.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="avis.html">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lohan-soares-tomaz-107999372" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><span style="color:#888">Paris / Île-de-France</span></li>
+            <li><span style="color:#888">Réponse sous 24h</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Nexistem — Lohan Soares Tomaz</p>
+        <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

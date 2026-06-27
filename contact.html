@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Nexistem</title>
+  <meta name="description" content="Contactez Nexistem. Un projet web, une automatisation IA ? Parlez-en à Lohan — réponse sous 24h." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/logo-vertical.jpg" />
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Nexistem — Accueil">
+        <img src="assets/logo-horizontal.jpg" alt="Nexistem" />
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--primary navbar__cta">Prendre contact</a>
+      <button class="navbar__burger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="navbar__mobile" role="dialog" aria-label="Menu mobile">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="projets.html">Projets</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="avis.html">Avis</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Prendre contact</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- ===================== INFOS ===================== -->
+        <div class="contact-info">
+          <p class="contact-info__label">Contact</p>
+          <h1>Un projet ?<br />Parlons-en.</h1>
+          <p>
+            Décrivez votre idée, votre besoin, ou juste ce qui vous pose
+            problème — je réponds sous 24h et on voit ensemble comment
+            avancer.
+          </p>
+
+          <div class="contact-detail">
+            <div class="contact-detail__item">
+              <div class="contact-detail__icon"><i data-lucide="mail"></i></div>
+              <div class="contact-detail__text">
+                <strong>Email</strong>
+                <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-detail__item">
+              <div class="contact-detail__icon"><i data-lucide="user"></i></div>
+              <div class="contact-detail__text">
+                <strong>LinkedIn</strong>
+                <a
+                  href="https://www.linkedin.com/in/lohan-soares-tomaz-107999372"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Lohan Soares Tomaz
+                </a>
+              </div>
+            </div>
+            <div class="contact-detail__item">
+              <div class="contact-detail__icon"><i data-lucide="map-pin"></i></div>
+              <div class="contact-detail__text">
+                <strong>Localisation</strong>
+                <span>Paris / Île-de-France</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-response">
+            <i data-lucide="zap" class="icon-red"></i>
+            <p>Je réponds à tous les messages sous <strong>24 heures</strong>, souvent beaucoup moins.</p>
+          </div>
+        </div>
+
+        <!-- ===================== FORMULAIRE ===================== -->
+        <!--
+          NETLIFY FORMS : le formulaire est prêt pour Netlify.
+          L'attribut data-netlify="true" active la gestion des soumissions.
+          Aucun code serveur nécessaire — ça fonctionne dès le déploiement.
+          Les soumissions apparaissent dans le dashboard Netlify > Forms.
+        -->
+        <div class="contact-form">
+          <form
+            id="contact-form"
+            name="contact-nexistem"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            <!-- Champ honeypot anti-spam (caché) -->
+            <input type="hidden" name="form-name" value="contact-nexistem" />
+            <p style="display:none;">
+              <label>Ne pas remplir : <input name="bot-field" /></label>
+            </p>
+
+            <!-- Nom + Email -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nom *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Votre nom"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="votre@email.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+
+            <!-- Sujet -->
+            <div class="form-group">
+              <label for="sujet">Sujet *</label>
+              <select id="sujet" name="sujet" required>
+                <option value="" disabled selected>Choisissez un sujet</option>
+                <option value="site-web">Site web</option>
+                <option value="agent-ia">Agent IA &amp; Automatisation</option>
+                <option value="pack">Pack Site + Agent IA</option>
+                <option value="question">Question générale</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Décrivez votre projet, votre idée, ou votre besoin. Plus vous êtes précis, mieux je pourrai vous aider."
+                required
+              ></textarea>
+            </div>
+
+            <!-- Envoi -->
+            <div class="form-submit">
+              <span class="form-note">* Champs obligatoires</span>
+              <button type="submit" class="btn btn--primary">
+                Envoyer →
+              </button>
+            </div>
+
+            <!-- Statut (success / error injecté par JS) -->
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo-vertical.jpg" alt="Nexistem" />
+          <p>Sites web, agents IA et automatisations.<br />Le digital professionnel, à prix juste.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="avis.html">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lohan-soares-tomaz-107999372" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><span style="color:#888">Paris / Île-de-France</span></li>
+            <li><span style="color:#888">Réponse sous 24h</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Nexistem — Lohan Soares Tomaz</p>
+        <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avis clients — Nexistem</title>
+  <meta name="description" content="Avis et témoignages des clients Nexistem. Ce que disent ceux qui ont fait confiance à Lohan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/logo-vertical.jpg" />
+
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="Nexistem — Accueil">
+        <img src="assets/logo-horizontal.jpg" alt="Nexistem" />
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--primary navbar__cta">Prendre contact</a>
+      <button class="navbar__burger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="navbar__mobile" role="dialog" aria-label="Menu mobile">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="projets.html">Projets</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="avis.html">Avis</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Prendre contact</a>
+  </div>
+
+  <main>
+    <!-- Header -->
+    <div class="page-header container">
+      <p class="page-header__label">Témoignages</p>
+      <h1>Ce qu'ils<br />en pensent</h1>
+      <p>
+        La meilleure preuve, c'est ce que disent ceux qui sont passés par là.
+      </p>
+    </div>
+
+    <!-- ===================== SECTION AVIS ===================== -->
+    <section class="section">
+      <div class="container">
+
+        <div class="reviews-empty">
+          <div class="reviews-empty__icon"><i data-lucide="star"></i></div>
+          <h2>Les premiers avis<br />arrivent bientôt</h2>
+          <p>
+            Nexistem vient de lancer. Les retours des premiers clients seront
+            affichés ici dès réception.
+          </p>
+        </div>
+
+        <!-- Cartes placeholder — structure prête pour de vrais avis -->
+        <div class="reviews-grid" aria-label="Aperçu de la mise en page des avis" style="margin-top:64px;">
+
+          <!-- Placeholder 1 -->
+          <div class="review-card review-card--placeholder">
+            <div class="review-card__header">
+              <div class="review-card__avatar">?</div>
+              <div class="review-card__meta">
+                <strong>Prochain client</strong>
+                <span>Métier</span>
+              </div>
+            </div>
+            <div class="review-card__stars">★★★★★</div>
+            <p class="review-card__text">
+              "Son témoignage apparaîtra ici..."
+            </p>
+          </div>
+
+          <!-- Placeholder 2 -->
+          <div class="review-card review-card--placeholder">
+            <div class="review-card__header">
+              <div class="review-card__avatar">?</div>
+              <div class="review-card__meta">
+                <strong>Prochain client</strong>
+                <span>Métier</span>
+              </div>
+            </div>
+            <div class="review-card__stars">★★★★★</div>
+            <p class="review-card__text">
+              "Son témoignage apparaîtra ici..."
+            </p>
+          </div>
+
+          <!-- Placeholder 3 -->
+          <div class="review-card review-card--placeholder">
+            <div class="review-card__header">
+              <div class="review-card__avatar">?</div>
+              <div class="review-card__meta">
+                <strong>Prochain client</strong>
+                <span>Métier</span>
+              </div>
+            </div>
+            <div class="review-card__stars">★★★★★</div>
+            <p class="review-card__text">
+              "Son témoignage apparaîtra ici..."
+            </p>
+          </div>
+        </div>
+
+        <!--
+          EXEMPLE D'UN VRAI AVIS (à copier/coller et remplir) :
+
+          <div class="review-card">
+            <div class="review-card__header">
+              <div class="review-card__avatar">
+                <img src="assets/clients/jean-dupont.jpg" alt="Jean Dupont" />
+                // OU : initiales si pas de photo
+                // JD
+              </div>
+              <div class="review-card__meta">
+                <strong>Jean Dupont</strong>
+                <span>Photographe indépendant</span>
+              </div>
+            </div>
+            <div class="review-card__stars">★★★★★</div>
+            <p class="review-card__text">
+              "Lohan a transformé mon vieux site en quelque chose de vraiment
+              professionnel. Rapide, à l'écoute, et le résultat dépasse
+              mes attentes."
+            </p>
+          </div>
+        -->
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--gray text-center">
+      <div class="container">
+        <h2 style="max-width:520px; margin:0 auto 16px;">
+          Vous voulez être le premier<br />à laisser un avis ?
+        </h2>
+        <p style="color:#666; margin-bottom:40px;">
+          Lancez votre projet dès maintenant pendant l'offre de lancement.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn--primary">Démarrer un projet</a>
+          <a href="tarifs.html" class="btn btn--outline">Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo-vertical.jpg" alt="Nexistem" />
+          <p>Sites web, agents IA et automatisations.<br />Le digital professionnel, à prix juste.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="avis.html">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lohan-soares-tomaz-107999372" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><span style="color:#888">Paris / Île-de-France</span></li>
+            <li><span style="color:#888">Réponse sous 24h</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Nexistem — Lohan Soares Tomaz</p>
+        <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

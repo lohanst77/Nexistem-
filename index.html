@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexistem — Sites web, IA & Automatisations</title>
+  <meta name="description" content="Nexistem crée vos sites web, agents IA et automatisations à prix juste. Le digital professionnel, sans le prix des grandes agences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-vertical.jpg" />
+
+  <!-- Styles d'animation spécifiques à cette page -->
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="Nexistem — Accueil">
+        <img src="assets/logo-horizontal.jpg" alt="Nexistem" />
+      </a>
+
+      <!-- Liens desktop -->
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+        <li><a href="avis.html">Avis</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- CTA desktop -->
+      <a href="contact.html" class="btn btn--primary navbar__cta">Prendre contact</a>
+
+      <!-- Burger mobile -->
+      <button class="navbar__burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile (ouvert via JS) -->
+  <div class="navbar__mobile" role="dialog" aria-label="Menu mobile">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="projets.html">Projets</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="avis.html">Avis</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">Prendre contact</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <main>
+    <section class="hero">
+
+      <!-- Vidéo de fond -->
+      <video class="hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/hero-video.mp4" type="video/mp4">
+      </video>
+
+      <!-- Voile sombre — ajuster rgba(0,0,0,X) pour changer l'opacité -->
+      <div class="hero__overlay"></div>
+
+      <!-- Contenu texte — z-index: 2 pour passer au-dessus de la vidéo et du voile -->
+      <div class="hero__content container">
+
+        <h1>
+          Votre digital propulsé,<br />
+          votre budget <span class="text-red">préservé</span>
+        </h1>
+
+        <p class="hero__sub">
+          Sites web, IA et automatisations. Le digital professionnel,
+          sans le prix des grandes agences.
+        </p>
+
+        <a href="services.html" class="btn btn--white" style="font-size:1.05rem; padding:18px 44px;">
+          Voir nos services →
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===================== INTRO SERVICES ===================== -->
+    <section class="home-services section">
+      <div class="container">
+        <div class="text-center">
+          <p class="why-section__label">Ce que je fais</p>
+          <h2>Deux services, un seul objectif :<br />faire avancer votre projet</h2>
+        </div>
+
+        <div class="home-services__grid">
+          <!-- Service 1 -->
+          <div class="home-service-card fade-in">
+            <div class="home-service-card__icon"><i data-lucide="globe"></i></div>
+            <h3>Site web</h3>
+            <p>
+              Un site qui vous ressemble, livré vite et bien fait.
+              Prix fixe, aucun abonnement, et vous repartez avec votre site
+              entièrement entre vos mains.
+            </p>
+            <a href="services.html#site-web">En savoir plus →</a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="home-service-card fade-in">
+            <div class="home-service-card__icon"><i data-lucide="cpu"></i></div>
+            <h3>Agent IA &amp; Automatisation</h3>
+            <p>
+              Une tâche répétitive qui vous prend trop de temps ?
+              Je crée un workflow intelligent qui travaille à votre place,
+              24h/24, sans les charges qui vont avec.
+            </p>
+            <a href="services.html#agent-ia">En savoir plus →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== POURQUOI NEXISTEM ===================== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center" style="max-width:640px; margin:0 auto 48px;">
+          Pourquoi choisir Nexistem ?
+        </h2>
+        <div class="why-cards">
+
+          <!-- Carte 1 — Accessible -->
+          <a href="a-propos.html#pourquoi-moins-cher" class="why-card-link">
+            <div class="why-card-new">
+              <i data-lucide="piggy-bank" class="why-card-new__icon"></i>
+              <h3 class="why-card-new__title">Accessible</h3>
+              <p class="why-card-new__text">
+                Les agences prennent des marges folles. Moi non.
+                Prix fixe, sans intermédiaire, sans mauvaise surprise.
+              </p>
+              <span class="why-card-new__link">Pourquoi c'est moins cher →</span>
+            </div>
+          </a>
+
+          <!-- Carte 2 — Expérimenté -->
+          <a href="a-propos.html#profil" class="why-card-link">
+            <div class="why-card-new">
+              <i data-lucide="graduation-cap" class="why-card-new__icon"></i>
+              <h3 class="why-card-new__title">Expérimenté</h3>
+              <p class="why-card-new__text">
+                Double diplôme Mines Paris PSL, stage chez Neurones IT
+                (outil vendu à la SNCF), missions avec BCG, Sephora, Rothschild...
+              </p>
+              <span class="why-card-new__link">Mon parcours →</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="section text-center">
+      <div class="container">
+        <h2 style="max-width:600px; margin:0 auto 16px;">
+          Prêt à lancer votre projet ?
+        </h2>
+        <p style="color:#666; margin-bottom:40px;">
+          Dites-moi votre idée — je vous réponds sous 24h.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn--primary">Prendre contact</a>
+          <a href="tarifs.html" class="btn btn--outline">Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <img src="assets/logo-vertical.jpg" alt="Nexistem" />
+          <p>
+            Sites web, agents IA et automatisations.<br />
+            Le digital professionnel, à prix juste.
+          </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="avis.html">Avis</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/lohan-soares-tomaz-107999372" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><span style="color:#888">Paris / Île-de-France</span></li>
+            <li><span style="color:#888">Réponse sous 24h</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 Nexistem — Lohan Soares Tomaz</p>
+        <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
