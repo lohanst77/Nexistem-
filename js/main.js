@@ -49,9 +49,24 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  const autoFade = [
+    '.fade-in',
+    'section h2', 'section h3',
+    '.pricing-card', '.exp-card', '.why-card-new', '.review-card',
+    '.logo-card', '.pricing-launch-banner', '.pricing-enterprise-banner',
+  ];
+  const seen = new Set();
+  autoFade.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      if (!seen.has(el)) {
+        seen.add(el);
+        el.classList.add('fade-in');
+        observer.observe(el);
+      }
+    });
+  });
 
   // ---------- FORMULAIRE DE CONTACT ----------
   const form = document.querySelector('#contact-form');

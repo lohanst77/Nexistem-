@@ -41,6 +41,7 @@ body {
 img {
   max-width: 100%;
   display: block;
+  content-visibility: auto;
 }
 
 a {
@@ -346,6 +347,7 @@ p {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  will-change: transform;
 }
 
 /* Voile sombre — modifier rgba(0,0,0,X) pour ajuster l'opacité */
@@ -1370,6 +1372,69 @@ p {
 .reviews-empty__icon .lucide     { width: 48px; height: 48px; }
 .contact-detail__icon .lucide    { width: 20px; height: 20px; }
 .contact-response .lucide        { width: 22px; height: 22px; flex-shrink: 0; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Entrée de page */
+main {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Reveal au scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero — cascade sur index.html */
+.hero__content h1 {
+  animation: fadeInUp 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+.hero__content .hero__sub {
+  animation: fadeInUp 0.6s ease 0.4s forwards;
+  opacity: 0;
+}
+.hero__content .btn {
+  animation: fadeInUp 0.6s ease 0.6s forwards;
+  opacity: 0;
+}
+
+/* Hover boutons — compléter les variantes sans box-shadow */
+.btn--outline:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.btn--white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+}
+.pricing-enterprise-banner__btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Accessibilité — désactiver les animations si demandé */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* ============================================================
    RESPONSIVE — Mobile-first breakpoints
