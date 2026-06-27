@@ -1614,6 +1614,29 @@ p {
   transform: translateY(-2px);
 }
 
+/* =========================================================
+   PAGE CONTACT — animations CSS au chargement (aucun JS)
+   ========================================================= */
+
+@keyframes contactReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Gauche : titre et infos de contact */
+.contact-info h1                    { animation: contactReveal 0.5s ease-out 0s    both; }
+.contact-detail__item:nth-child(1)  { animation: contactReveal 0.5s ease-out 0.1s  both; }
+.contact-detail__item:nth-child(2)  { animation: contactReveal 0.5s ease-out 0.2s  both; }
+.contact-detail__item:nth-child(3)  { animation: contactReveal 0.5s ease-out 0.3s  both; }
+.contact-response                   { animation: contactReveal 0.5s ease-out 0.4s  both; }
+
+/* Droite : champs du formulaire */
+.contact-form .form-group:has(#name)    { animation: contactReveal 0.5s ease-out 0.2s  both; }
+.contact-form .form-group:has(#email)   { animation: contactReveal 0.5s ease-out 0.35s both; }
+.contact-form .form-group:has(#sujet)   { animation: contactReveal 0.5s ease-out 0.5s  both; }
+.contact-form .form-group:has(#message) { animation: contactReveal 0.5s ease-out 0.65s both; }
+.contact-form .form-submit              { animation: contactReveal 0.5s ease-out 0.8s  both; }
+
 /* --- Accessibilité --- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1636,6 +1659,15 @@ p {
   .clip-reveal { clip-path: none !important; transition: none !important; }
   .line-inner { transform: none !important; transition: none !important; }
   .about-photo-reveal { clip-path: none !important; opacity: 1 !important; }
+  .contact-info h1,
+  .contact-detail__item,
+  .contact-response,
+  .contact-form .form-group,
+  .contact-form .form-submit {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
   #scroll-progress { display: none; }
 }
 
