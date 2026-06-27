@@ -228,39 +228,4 @@ document.addEventListener('DOMContentLoaded', () => {
     faqObs.observe(faqList);
   }
 
-  // ---------- FORMULAIRE DE CONTACT ----------
-  const form = document.querySelector('#contact-form');
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn    = form.querySelector('[type="submit"]');
-      const status = document.querySelector('#form-status');
-
-      btn.disabled    = true;
-      btn.textContent = 'Envoi en cours…';
-
-      try {
-        const data = new FormData(form);
-        const res  = await fetch('/', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body:    new URLSearchParams(data).toString(),
-        });
-
-        if (res.ok) {
-          status.className  = 'form-status success';
-          status.textContent = '✓ Message envoyé ! Je vous réponds sous 24h.';
-          form.reset();
-        } else {
-          throw new Error('Erreur réseau');
-        }
-      } catch {
-        status.className  = 'form-status error';
-        status.textContent = 'Une erreur s\'est produite. Écrivez-moi directement : contact.nexistem@gmail.com';
-      } finally {
-        btn.disabled    = false;
-        btn.textContent = 'Envoyer';
-      }
-    });
-  }
 });

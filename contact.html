@@ -112,14 +112,9 @@
         <div class="contact-form">
           <form
             id="contact-form"
-            name="contact"
+            action="https://formspree.io/f/xykqjgbb"
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" />
-
             <!-- Nom + Email -->
             <div class="form-row">
               <div class="form-group">
@@ -144,6 +139,18 @@
                   autocomplete="email"
                 />
               </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="form-group">
+              <label for="telephone">Téléphone (optionnel)</label>
+              <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                placeholder="06 00 00 00 00"
+                autocomplete="tel"
+              />
             </div>
 
             <!-- Sujet -->
@@ -178,8 +185,6 @@
               </button>
             </div>
 
-            <!-- Statut (success / error injecté par JS) -->
-            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
           </form>
         </div>
       </div>
