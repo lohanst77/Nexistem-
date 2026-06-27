@@ -211,6 +211,10 @@ p {
   padding: 4px;
   background: none;
   border: none;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
 }
 .navbar__burger span {
   display: block;
@@ -258,6 +262,9 @@ p {
 .navbar__mobile a:hover { color: var(--red); }
 .navbar__mobile .btn {
   margin-top: 8px;
+}
+.navbar__mobile .btn--primary {
+  color: var(--white);
 }
 
 /* ---------- FOOTER ---------- */
@@ -1631,11 +1638,12 @@ p {
 .contact-response                   { animation: contactReveal 0.5s ease-out 0.4s  both; }
 
 /* Droite : champs du formulaire */
-.contact-form .form-group:has(#name)    { animation: contactReveal 0.5s ease-out 0.2s  both; }
-.contact-form .form-group:has(#email)   { animation: contactReveal 0.5s ease-out 0.35s both; }
-.contact-form .form-group:has(#sujet)   { animation: contactReveal 0.5s ease-out 0.5s  both; }
-.contact-form .form-group:has(#message) { animation: contactReveal 0.5s ease-out 0.65s both; }
-.contact-form .form-submit              { animation: contactReveal 0.5s ease-out 0.8s  both; }
+.contact-form .form-group:has(#name)      { animation: contactReveal 0.5s ease-out 0.2s  both; }
+.contact-form .form-group:has(#email)     { animation: contactReveal 0.5s ease-out 0.35s both; }
+.contact-form .form-group:has(#telephone) { animation: contactReveal 0.5s ease-out 0.5s  both; }
+.contact-form .form-group:has(#sujet)     { animation: contactReveal 0.5s ease-out 0.65s both; }
+.contact-form .form-group:has(#message)   { animation: contactReveal 0.5s ease-out 0.8s  both; }
+.contact-form .form-submit                { animation: contactReveal 0.5s ease-out 0.95s both; }
 
 /* --- Accessibilité --- */
 
@@ -1712,6 +1720,7 @@ p {
 /* Mobile */
 @media (max-width: 600px) {
   :root { --nav-h: 64px; }
+  .navbar__logo img { height: 44px; }
   .section { padding: 64px 0; }
   .why-grid { grid-template-columns: 1fr; }
   .logos-grid { grid-template-columns: repeat(2, 1fr); }
