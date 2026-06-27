@@ -41,6 +41,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ---------- TRANSITIONS DE PAGE (body opacity piloté par CSS + JS) ----------
+  // Le CSS démarre body à opacity:0 (render-blocking → pas de flash).
+  // Ici on le remet à 1 pour déclencher le fade-in via la transition CSS.
+  document.body.style.opacity = '1';
+
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('#') ||
+        href.startsWith('mailto') || href.startsWith('tel')) return;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.body.style.opacity = '0';
+      setTimeout(() => { window.location.href = href; }, 450);
+    });
+  });
+
+  // ---------- BARRE DE PROGRESSION ----------
+  const progressBar = document.createElement('div');
+  progressBar.id = 'scroll-progress';
+  document.body.prepend(progressBar);
+  window.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : '0%';
+  }, { passive: true });
+
+  // ---------- NAVBAR AU SCROLL ----------
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+
   // ---------- ANIMATIONS D'APPARITION ----------
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -49,10 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   const seen = new Set();
-
   const addFade = (sel, cls = 'fade-in') => {
     document.querySelectorAll(sel).forEach(el => {
       if (seen.has(el)) return;
@@ -62,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Depuis le bas — éléments généraux
   addFade('.fade-in');
   addFade('section h2');
   addFade('section h3');
@@ -73,39 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
   addFade('.logo-card');
   addFade('.pricing-launch-banner');
   addFade('.pricing-enterprise-banner');
-
-  // Depuis la droite — image service 1 (bloc normal, image à droite)
   addFade('.service-block:not(.service-block--reverse) .service-img-col', 'fade-in-right');
-  // Depuis la gauche — image service 2 (bloc inversé, image à gauche visuellement)
   addFade('.service-block--reverse .service-img-col', 'fade-in-left');
-
-  // ---------- TRANSITIONS DE PAGES ----------
-  const initPageTransitions = () => {
-    document.querySelectorAll('a[href]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('http') || href.startsWith('#') ||
-          href.startsWith('mailto') || href.startsWith('tel')) return;
-
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (document.startViewTransition) {
-          document.startViewTransition(() => { window.location.href = href; });
-        } else {
-          document.body.style.transition = 'opacity 0.3s ease';
-          document.body.style.opacity = '0';
-          setTimeout(() => { window.location.href = href; }, 300);
-        }
-      });
-    });
-
-    document.body.style.opacity = '0';
-    requestAnimationFrame(() => {
-      document.body.style.transition = 'opacity 0.4s ease';
-      document.body.style.opacity = '1';
-    });
-  };
-
-  initPageTransitions();
 
   // ---------- FORMULAIRE DE CONTACT ----------
   const form = document.querySelector('#contact-form');

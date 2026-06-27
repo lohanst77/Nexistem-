@@ -36,6 +36,8 @@ body {
   color: var(--black);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  opacity: 0;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 img {
@@ -1372,118 +1374,144 @@ p {
 .contact-response .lucide        { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* ============================================================
-   PAGE TRANSITIONS
+   BARRE DE PROGRESSION SCROLL
    ============================================================ */
 
-@view-transition { navigation: auto; }
-
-@keyframes page-fade-out {
-  from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(-16px); }
-}
-@keyframes page-fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-::view-transition-old(root) {
-  animation: page-fade-out 0.25s ease forwards;
-}
-::view-transition-new(root) {
-  animation: page-fade-in 0.35s ease forwards;
-}
-::view-transition-image-pair(root) {
-  isolation: auto;
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--red);
+  z-index: 1001;
+  transition: width 0.08s linear;
 }
 
 /* ============================================================
    ANIMATIONS
    ============================================================ */
 
+/* --- Keyframes --- */
+
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Reveal au scroll — depuis le bas */
+/* Révélation du titre hero : expansion typographique + montée */
+@keyframes heroTitle {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    letter-spacing: 0.06em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* --- Reveal au scroll --- */
+
 .fade-in {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(44px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Depuis la gauche */
 .fade-in-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-48px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in-left.visible {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Depuis la droite */
 .fade-in-right {
   opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(48px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in-right.visible {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Délais en cascade pour les grilles */
-.fade-in:nth-child(1) { transition-delay: 0s; }
-.fade-in:nth-child(2) { transition-delay: 0.1s; }
-.fade-in:nth-child(3) { transition-delay: 0.2s; }
-.fade-in:nth-child(4) { transition-delay: 0.3s; }
+/* Cascade dans les grilles (jusqu'à 8 enfants) */
+.fade-in:nth-child(2) { transition-delay: 0.08s; }
+.fade-in:nth-child(3) { transition-delay: 0.16s; }
+.fade-in:nth-child(4) { transition-delay: 0.24s; }
+.fade-in:nth-child(5) { transition-delay: 0.32s; }
+.fade-in:nth-child(6) { transition-delay: 0.40s; }
+.fade-in:nth-child(7) { transition-delay: 0.48s; }
+.fade-in:nth-child(8) { transition-delay: 0.56s; }
 
-/* Hero — cascade sur index.html */
+/* --- Hero — cascade après le fade-in de la page (0.45s) --- */
+
 .hero__content h1 {
-  animation: fadeInUp 0.6s ease 0.2s forwards;
+  animation: heroTitle 1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
   opacity: 0;
 }
 .hero__content .hero__sub {
-  animation: fadeInUp 0.6s ease 0.4s forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
   opacity: 0;
 }
 .hero__content .btn {
-  animation: fadeInUp 0.6s ease 0.6s forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
   opacity: 0;
 }
 
-/* Hover images de service */
+/* --- Navbar — renforcement visuel au scroll --- */
+
+.navbar {
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.navbar.scrolled {
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  border-bottom-color: transparent;
+}
+
+/* --- Images de service — hover zoom --- */
+
 .service-img-col {
   overflow: hidden;
   border-radius: 16px;
 }
 .service-img {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .service-img-col:hover .service-img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
-/* Hover boutons — compléter les variantes sans box-shadow */
+/* --- Hover boutons complémentaires --- */
+
 .btn--outline:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 .btn--white:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
 }
 .pricing-enterprise-banner__btn:hover {
   transform: translateY(-2px);
 }
 
-/* Accessibilité — désactiver les animations si demandé */
+/* --- Accessibilité --- */
+
 @media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1 !important;
+    transition: none !important;
+  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
@@ -1493,6 +1521,7 @@ p {
     transform: none;
     transition: none;
   }
+  #scroll-progress { display: none; }
 }
 
 /* ============================================================
