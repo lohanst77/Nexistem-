@@ -228,4 +228,41 @@ document.addEventListener('DOMContentLoaded', () => {
     faqObs.observe(faqList);
   }
 
+  // ---------- FORMULAIRE DE CONTACT (Formspree via fetch) ----------
+  const contactForm = document.querySelector('#contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn    = contactForm.querySelector('[type="submit"]');
+      const status = document.querySelector('#form-status');
+
+      btn.disabled    = true;
+      btn.textContent = 'Envoi en cours…';
+      status.className = '';
+      status.innerHTML = '';
+
+      try {
+        const res = await fetch(contactForm.action, {
+          method:  'POST',
+          headers: { 'Accept': 'application/json' },
+          body:    new FormData(contactForm),
+        });
+
+        if (res.ok) {
+          status.className = 'form-status success';
+          status.textContent = '✓ Message envoyé ! Je vous réponds sous 24h.';
+          contactForm.reset();
+        } else {
+          throw new Error('error');
+        }
+      } catch {
+        status.className = 'form-status error';
+        status.innerHTML = 'Une erreur s\'est produite. Envoyez-moi directement un email à <a href="mailto:contact.nexistem@gmail.com">contact.nexistem@gmail.com</a> — je vous réponds sous 24h.';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Envoyer →';
+      }
+    });
+  }
+
 });
